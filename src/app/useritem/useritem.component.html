@@ -1,0 +1,52 @@
+<div class="row">
+   <div class="col-md-12 text-center">
+      <h3>Items To Employee</h3>
+   </div> 
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+       <select class="form-control" [(ngModel)]="myemp">
+        <option value="">Choose Emp</option>
+        <option *ngFor="let emp of allemp" value="{{emp.id}}">
+          {{emp.name}}
+        </option>
+       </select> 
+    </div> 
+    <div class="col-md-3">
+        <select class="form-control" [(ngModel)]="myitem">
+            <option value="">Select Item</option>
+            <option *ngFor="let item of allitem" value="{{item.itemid}}">
+                {{item.name}} - {{item.qty}}
+              </option>      
+        </select>
+    </div> 
+    <div class="col-md-3">
+      <input type="number" class="form-control" [(ngModel)]="myqty">
+    </div> 
+    <div class="col-md-3">
+      <button (click)="save()" class="btn btn-primary">Submit</button>
+    </div> 
+  </div>
+<br>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <caption class="text-center"><h3>Distribution Items</h3></caption>
+      <tr class="active">
+        <th>Employee Name</th>
+        <th>Mobile No</th>
+        <th>Item Name</th>
+        <th>Total Given Items</th>
+        <th>Last given date</th>
+      </tr>
+      <tr *ngFor="let row of allempitem">
+        <td>{{row.empname}}</td>
+        <td>{{row.mobile}}</td>
+        <td>{{row.itemname}}</td>
+        <td>{{row.qty}}</td>
+        <td>{{row.postdate}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

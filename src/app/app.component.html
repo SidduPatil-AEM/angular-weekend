@@ -1,0 +1,125 @@
+<div class="container">
+	<br>
+	<div class="row" *ngIf="tokenno">
+		<div class="col-md-12 text-right">
+			Welcome - {{name}} 
+			<a href="javascript:void(0)" (click)="logout()">Logout</a>
+		</div>
+		<div class="col-md-12 text-center">
+			<div class="btn-group">
+				<a routerLink="dashboard" class="btn btn-primary">Dashboard</a>
+				<a routerLink="item" class="btn btn-success">Manage Inventory</a>
+				<a routerLink="myuser" class="btn btn-danger">Manage Employee</a>
+				<a routerLink="useritem" class="btn btn-warning">Distributed Items</a>
+				<a routerLink="profile" class="btn btn-info">My Profile</a>
+				<a routerLink="myapi" class="btn btn-info">Local API</a>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+
+	<!--if tokenno is fasle then bellow else above-->
+	<div class="row" *ngIf="!tokenno">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+		<br>
+			<!--for login-->
+			 <div *ngIf="login" class="panel panel-primary">
+				<div class="panel-heading"> Customer login </div>
+				<div class="panel-body">
+					<p class="text-center text-danger">{{erromessage}}</p>
+					<form [formGroup]="loginform" (ngSubmit)="logincheck()">
+					<div class="form-group">
+						<label>Your Email Id</label>
+						<input type="email" class="form-control" formControlName="emailid">
+						
+	<div *ngIf="pagesubmit && loginform.controls.emailid.errors">
+		<p *ngIf="loginform.controls.emailid.errors.required">
+		   <i class="text-danger">Please enter your email id</i>
+		</p>	
+		<p *ngIf="loginform.controls.emailid.errors.email">
+			<i class="text-danger">Please enter valid email id</i>	
+		 </p>
+	</div>
+
+					</div><!--form group end here-->
+					
+					<div class="form-group">
+						<label>Your Password</label>
+						<input type="password" class="form-control" formControlName="upass">
+					
+		<div *ngIf="pagesubmit && loginform.controls.upass.errors">
+			<p *ngIf="loginform.controls.upass.errors.required">
+				<i class="text-danger">Please enter password !</i>
+			</p>	
+			<p *ngIf="loginform.controls.upass.errors.minlength">
+				<i class="text-danger">Password min 5 character</i>	
+			</p>
+			<p *ngIf="loginform.controls.upass.errors.maxlength">
+					<i class="text-danger">Password max 8 character</i>	
+			</p>
+		</div>
+
+					</div>
+					
+					<div class="text-center">
+						<button class="btn btn-danger">Login</button>
+					</div>
+					</form>
+				</div>
+				<div class="panel-footer text-center">
+<a href="javascript:void(0)" (click)="enableblock('1')"> + I am new customer ! </a>
+				</div>
+				
+			 </div><!--login panel end here-->
+			 
+			 
+			
+			
+			<div *ngIf="signup" class="panel panel-primary">
+				<div class="panel-heading"> Register </div>
+				<div class="panel-body">
+					<p class="text-center text-danger">{{erromessage}}</p>
+				    <div class="form-group">
+						<label>Your Full Name</label>
+						<input type="text" class="form-control" [(ngModel)]="fname">
+					</div>
+					<div class="form-group">
+						<label>Your Mobile No</label>
+						<input type="text" class="form-control" [(ngModel)]="mobile">
+					</div>
+					<div class="form-group">
+						<label>Your Email Id</label>
+						<input type="text" class="form-control" [(ngModel)]="email">
+					</div>
+					
+					<div class="form-group">
+						<label>Your Password</label>
+						<input type="password" class="form-control" [(ngModel)]="pass">
+					</div>
+					
+					<div class="form-group">
+						<label>Your City</label>
+						<input type="text" class="form-control" [(ngModel)]="city">
+					</div>
+					
+					<div class="form-group">
+						<label>Your Area Pincode</label>
+						<input type="text" class="form-control" [(ngModel)]="pincode">
+					</div>
+					<div class="text-center">
+						<button class="btn btn-danger" (click)="register()">Register</button>
+					</div>
+				</div>
+				<div class="panel-footer text-center">
+<a href="javascript:void(0)" (click)="enableblock('2')">I have account ! </a>
+				</div>
+			 </div>
+			<!--for signup-->
+			
+		</div><!--6end here-->
+		<div class="col-md-3"></div>
+	</div>
+</div>

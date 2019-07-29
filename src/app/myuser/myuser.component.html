@@ -1,0 +1,44 @@
+<br>
+<div class="row">
+  <div class="col-md-3">
+    <table class="table table-bordered">
+      <tr>
+        <td>Emp Name:<input type="text" [(ngModel)]="name" class="form-control"></td>
+      </tr>  
+
+      <tr> 
+        <td>Mobile No<input type="text" [(ngModel)]="email" class="form-control"></td>
+      </tr>
+      <tr>
+        <td>Email Id<input type="text" [(ngModel)]="mobile" class="form-control"></td>
+      </tr>
+      <tr>
+        <td>Address
+            <textarea class="form-control" [(ngModel)]="address"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button class="btn btn-danger" (click)="saveemp()">Save Employee</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-9">
+    <table class="table table-bordered table-hover">
+      <tr>
+        <th>Emp Name</th>
+        <th>Mobile No</th>
+        <th>Email Id</th>
+        <th>Address</th>
+      </tr>
+      <tr *ngFor="let row of allemp">
+        <td>{{row.name}}</td>
+        <td>{{row.mobile}}</td>
+        <td>{{row.email}}</td>
+        <td>{{row.address}}</td>
+      </tr>
+    </table>
+  </div>
+  
+</div>
